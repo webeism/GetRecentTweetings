@@ -62,7 +62,7 @@ class clsTweetings{
 	}
 
 /*
- * @fn CheckBearerToken Check if a valid bearer token has already been cached in the session, if not, create
+ * @fn CheckBearerToken Check if a bearer token is already in the session using the defined CONSUMER keys, if not, create
  * @param none
  * @access private
  * @return void
@@ -70,8 +70,14 @@ class clsTweetings{
 
 	private function fnCheckBearerToken(){
 		if($this->boolAuthSet){
+			$boolCreateNewBearerToken = false;
 			$this->strBearerToken = fnGetInput("strBearerToken","","S","S");
-			if($this->strBearerToken==""){
+			$strBearerTokenUser = fnGetInput("strBearerTokenUser","","S","S");
+			if(!($this->strBearerToken!="" && md5(CONSUMERKEY.CONSUMERKEYSECRET)==$strBearerTokenUser)){
+					$this->strBearerToken = "";
+					$boolCreateNewBearerToken = true;
+			}
+			if($boolCreateNewBearerToken){
 				//Attempt to generate
 				//Step 1: Encode consumer key and secret
 				
@@ -87,7 +93,7 @@ class clsTweetings{
 
 				//Step 2: post to oauth2/token (application only authentication)
 				$strURL = $this->strURLBaseOauth;
-				$strHeaders .= "Authorization: Basic ".$strEncodedKey."\r\n";
+				$strHeaders = "Authorization: Basic ".$strEncodedKey."\r\n";
 				$strHeaders .= "Content-Type: application/x-www-form-urlencoded;charset=UTF-8";
 
 				$arrParams = array(
@@ -111,6 +117,8 @@ class clsTweetings{
 						$this->strBearerToken = $arrResults["access_token"];
 						//Set in the session as future requests respond with the same token
 						$_SESSION["strBearerToken"] = $this->strBearerToken;
+						//Also set in the session a hash of the current credentials.
+						$_SESSION["strBearerTokenUser"] = md5(CONSUMERKEY.CONSUMERKEYSECRET);
 					}else{
 						$this->arrErrs[] = "Unable to retrieve bearer token from: " . var_dump($arrResults); 
 					}
@@ -130,7 +138,7 @@ class clsTweetings{
 	private function fnCreateResults(){
 		if($this->boolAuthSet && $this->strBearerToken!=""){
 			//Check if twitteruser has been posted
-			$strTwitterUser = fnGetInput("twitteruser","","S","P");
+			$strTwitterUser = trim(fnGetInput("twitteruser","","S","P"));
 			$this->arrHTMLs["strTwitterUser"] = htmlspecialchars($strTwitterUser);
 			if(preg_match('/^[A-Za-z0-9_]{1,15}$/', $strTwitterUser)){
 				//EndPoint
