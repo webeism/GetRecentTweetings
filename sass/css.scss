@@ -1,0 +1,162 @@
+/* 
+ * VARS
+*/
+
+$colour-1:#f4f8fb;
+$colour-2:#fff;
+$colour-txt1:#333;
+$colour-accent:#2b7bb8;
+
+/* 
+ * BOX MODEL
+*/
+
+* {
+	box-sizing: border-box;
+	&::after {
+		box-sizing: border-box;
+	}
+	&::before {
+		box-sizing: border-box;
+	}
+}
+
+/* 
+ * CLEARFIX PLACEHOLDER
+*/
+
+%clearfix{
+	&::after,&::before{
+		content:" ";
+		display: table;
+	}
+	&::after{
+		clear:both;
+	}
+}
+
+/* 
+ * GENERAL
+*/
+
+body{
+	background:$colour-1;
+	color:$colour-txt1;
+}
+
+h1,h2,h3{
+	margin:0;
+}
+
+h1{
+	font-size:1.5em;	
+}
+
+h2{
+	font-size:1em;
+}
+
+header,footer{
+	background:$colour-accent;
+	color:$colour-2;
+	padding:20px;
+	margin:10px 0;
+	border-radius:10px;
+}
+
+header{
+	margin-top:0;
+}
+
+
+footer{
+	margin-bottom:0;
+}
+
+p{
+	margin-bottom:0;
+}
+
+.main-wrapper{
+	max-width:66%;
+	margin:1em auto;
+	padding:1em;
+	background:$colour-2;
+	border-radius:10px;
+	box-shadow:5px 5px 10px #888888;
+	transition:all 0.3s ease-in-out;
+	@media (screen and max-width:480px){
+		max-width:100%
+	}
+}
+
+a{
+	color:white;
+	margin-right:5px;
+	&:hover{
+		text-decoration: none;
+	}
+}
+
+fieldset{
+	margin:1em 0;
+	border-color:$colour-accent;
+}
+
+label{
+	font-weight:bold;
+}
+
+label+textarea{
+	margin-top:0.5em;
+	width:100%;
+	background-color:$colour-1;
+}
+
+legend{
+	color:$colour-accent;
+	text-transform: uppercase;
+	font-weight:bold;
+	padding:0 0.2em;
+}
+
+input[type=submit]{
+	border:none;
+	background-color:$colour-accent;
+	padding:10px;
+	color:white;
+	box-shadow:2px 2px 5px #888888;
+	cursor:pointer;
+	border-radius:10px;
+	&:hover{
+		background-color:lighten($colour-accent,10%);
+		box-shadow:none;
+		color:$colour-txt1;
+	}
+}
+
+.tweetp{
+	color:green;
+}
+
+.succ{
+	color:green;
+	&::before{
+		content:"";
+		display:inline-block;
+		width:10px;
+		height:20px;
+		border-right: 2px solid green;
+		border-bottom: 2px solid green;
+		transform: rotate(40deg);
+		margin-right:10px;
+	}
+}
+.err{
+	color:red;
+	&::before{
+		content:"X";
+		display:inline-block;
+		margin-right:10px;
+	}
+}

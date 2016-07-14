@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter API</title>
+    <meta name="description" content="undefined">
+    <!-- Reset-->
+    <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css">
+    <!-- General css-->
+    <link rel="stylesheet" media="screen" href="css/css.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries--><!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <header>
+        <h1>Twitter API</h1>
+        <p>Experimenting with the twitter public search API using application-only authentication</p>
+      </header>
+      <section class="interface">
+        <h2>Use the interface below to query the twitter</h2>
+        <form method="post" action="{strFormAction}">
+          <fieldset>
+            <legend>Credentials</legend>{strCredentialsHTML}
+          </fieldset>
+          <fieldset>
+            <legend>Options</legend>{strOptionsHTML}
+            <p>
+              <label for="maxtweets">Maximum tweets:</label>
+              <select id="maxtweets" name="maxtweets">
+                <option value="10">10</option>
+              </select>
+              <label for="tweettype">Type:</label>
+              <select id="maxtweets" name="maxtweets">
+                <option value="from" selected="selected">From user</option>
+              </select>
+            </p>
+            <p>
+              <label for="twitteruser">Enter a single twitter user account (without &commat;) to investigate:</label>
+              <input type="text" required="required" id="twitteruser" name="twitteruser" placeholder="eg. rihanna" value="{strTwitterUser}">
+            </p>
+          </fieldset>
+          <fieldset>
+            <legend>go go go</legend>
+            <input type="submit" value="Investigate!">
+          </fieldset>
+          <fieldset id="results">
+            <legend>Results</legend>{strResultsHTML}
+          </fieldset>
+        </form>
+      </section>
+      <footer>
+        <h3>Twitter API</h3>
+        <p><a href="https://github.com/webeism/GetRecentTweetings" target="_blank">GitHub Repo</a><span>Using Jade, Sass, JQuery, PHP (without curl) to query the Twitter search API</span></p>
+      </footer>
+    </div>
+    <!-- JQuery-->
+    <script src="https://code.jquery.com/jquery-3.1.0.slim.min.js" integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8=" crossorigin="anonymous"></script>
+    <!-- General js-->
+    <script src="js/js.js"></script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+- var strTitle = "Twitter API";
+- var strStrap = "Experimenting with the twitter public search API using application-only authentication";
+- var strGitURL = "https://github.com/webeism/GetRecentTweetings"
+- var strFooterStrap = "Using Jade, Sass, JQuery, PHP (without curl) to query the Twitter search API";
+
+doctype html
+html(lang="en")
+	head
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
+		meta(charset="utf-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0") 
+		title= strTitle
+		meta(name="description" content="#{title}")
+		// Reset
+		link(rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css")
+		// General css
+		link( rel="stylesheet" media="screen", href="css/css.css")
+		// HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+		<!--[if lt IE 9]>
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js")
+		<![endif]-->
+	body
+		.main-wrapper
+			header
+				h1= strTitle
+				p= strStrap
+			section.interface
+				h2 Use the interface below to query the twitter
+				form(method="post",action="{strFormAction}")
+					fieldset
+						legend Credentials
+						| {strCredentialsHTML}
+					fieldset
+						legend Options
+						| {strOptionsHTML}
+						p
+							label(for="maxtweets") Maximum tweets:
+							- var intCount = 10;
+							select(id="maxtweets" name="maxtweets")
+								while intCount <= 10
+									option(value="#{intCount}") #{intCount}
+									- intCount++
+							label(for="tweettype") Type:
+							select(id="maxtweets" name="maxtweets")
+								option(value="from", selected="selected") From user
+						p
+							label(for="twitteruser") Enter a single twitter user account (without &commat;) to investigate:
+							input(type="text" required="required" id="twitteruser" name="twitteruser" placeholder="eg. rihanna" value="{strTwitterUser}")
+					fieldset
+						legend go go go
+						input(type="submit", value="Investigate!")
+					fieldset(id="results")
+						legend Results
+						| {strResultsHTML}
+			footer
+				h3= strTitle
+				p
+					a(href="#{strGitURL}",target="_blank") GitHub Repo
+					span #{strFooterStrap}
+		// JQuery
+		script(src="https://code.jquery.com/jquery-3.1.0.slim.min.js" integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8=" crossorigin="anonymous")
+		// General js
+		script(src="js/js.js")
