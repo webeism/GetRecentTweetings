@@ -1,2 +1,2 @@
-# GetRecentTweetings
+# Tweetings
 Investigating the twitter API
