@@ -22,7 +22,7 @@ php:
 
 # optionally specify a list of environments, for example to test different RDBMS
 env:
-   - TESTVAR=testvar
+#   - TESTVAR=testvar
 #  - DB=mysql
 #  - DB=pgsql
 
