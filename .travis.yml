@@ -45,4 +45,4 @@ env:
 # use the $DB env variable to determine the phpunit.xml to use
 #script: phpunit --configuration phpunit_$DB.xml --coverage-text
 
-script: phpunit index.php
+script: phpunit tests/clsTweetingsTest.php
