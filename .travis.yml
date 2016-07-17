@@ -21,7 +21,7 @@ php:
 #  - hhvm
 
 # optionally specify a list of environments, for example to test different RDBMS
-env:
+# env:
 #   - TESTVAR=testvar
 #  - DB=mysql
 #  - DB=pgsql
