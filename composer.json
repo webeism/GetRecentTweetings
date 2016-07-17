@@ -1,0 +1,15 @@
+{
+    "name": "webeism/tweetings",
+    "authors": [
+        {
+            "name": "John",
+            "email": "john@webeism.co.uk"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    },
+    "require": {
+        "phpmailer/phpmailer": "~5.2"
+    }
+}
