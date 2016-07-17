@@ -1,5 +1,7 @@
 # Twitter API
 
+[![Build Status](https://travis-ci.org/webeism/Tweetings.svg?branch=master)](https://travis-ci.org/webeism/Tweetings)
+
 Experimenting with the twitter REST API (https://dev.twitter.com/rest/public) using:
 
 - Jade: Template (template.jade) which creates the template.html base file
