@@ -7,7 +7,9 @@ Experimenting with the twitter REST API (https://dev.twitter.com/rest/public) us
 - Jade: Template (template.jade) which creates the template.html base file
 - Sass: sass/css.scss which creates the css/css.css file
 - PHP: A php class (clsTweetings.php) using twitter API application-only authorisation
-- HTML: Just a small web interface to add settings and query twitter. Simple "template" system
+- HTML: Small web interface to add settings and query twitter. Simple "template" system
+
+A working version of the app can be <a href="https://webeism-tweetings.herokuapp.com/index.php">see here</a>
 
 TODO: Add methods / options to interface, do something with the tweets, get a life :)
 
