@@ -15,8 +15,4 @@ if($CONSUMERKEYENV!==false && $CONSUMERKEYSECRETENV!==false){
 	define("CONSUMERKEYSECRET","");
 }
 
-echo "CONSUMERKEY: ####" . CONSUMERKEY . "#####<br />";
-echo "CONSUMERKEYSECRET: ####" . CONSUMERKEYSECRET . "#####";
-
-exit();
 ?>
