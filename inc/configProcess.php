@@ -1,0 +1,22 @@
+<?php
+// For Heroku, use "config vars"
+
+$CONSUMERKEYENV = getenv("CONSUMERKEY");
+$CONSUMERKEYSECRETENV = getenv("CONSUMERKEYSECRET");
+
+if($CONSUMERKEYENV!==false && $CONSUMERKEYSECRETENV!==false){
+	define("CONSUMERKEY",$CONSUMERKEYENV);
+	define("CONSUMERKEYSECRET",$CONSUMERKEYSECRETENV);
+}elseif(isset($CONSUMERKEY) && isset($CONSUMERKEYSECRET)){
+	define("CONSUMERKEY",$CONSUMERKEY);
+	define("CONSUMERKEYSECRET",$CONSUMERKEYSECRET);
+}else{
+	define("CONSUMERKEY","");
+	define("CONSUMERKEYSECRET","");
+}
+
+echo "CONSUMERKEY: ####" . CONSUMERKEY . "#####<br />";
+echo "CONSUMERKEYSECRET: ####" . CONSUMERKEYSECRET . "#####";
+
+exit();
+?>
