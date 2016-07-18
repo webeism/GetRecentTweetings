@@ -15,6 +15,7 @@ class clsTweetings{
  * @var private string strURLBaseOauth Base URL for Oauth authentication
  * @var private string strURLBase Base URL for API endpoint
  * @var private array arrFinalResults JSON results as an array
+ * @var private bool boolPosted Has the form been posted
 */
 	public $boolAuthSet = false;
 	private $arrHTMLs = array();
@@ -24,6 +25,7 @@ class clsTweetings{
 	private	$strURLBaseOauth = "https://api.twitter.com/oauth2/token";
 	private	$strURLBase = "https://api.twitter.com/1.1/statuses/user_timeline.json";
 	private	$arrFinalResults = array();
+	private	$boolPosted = false;
 
 /**
  * @fn __construct Constructor
@@ -32,8 +34,8 @@ class clsTweetings{
  * @return void
 */
 	public function __construct(){
-		//Initiate session
-		$this->fnSessionInit();
+		//Initiate session and check if the form has been posted
+		$this->fnInit();
 		//Check basic auth credentials
 		$this->fnCheckAuth();
 		//Check for an existing bearer token (create if none is set)
@@ -43,15 +45,17 @@ class clsTweetings{
 	}
 
 /*
- * @fn SessionInit Initiate a session
+ * @fn Init Initiate a session and do some other things
  * @param none
  * @access private
  * @return void
 */
 
-	private function fnSessionInit(){
+	private function fnInit(){
 		//The "bearer token" will be stored in the session as repeated attempts to create it result in the same value
 		if(!isset($_SESSION)){@session_start();}
+		//Check if the form has been posted
+		$this->boolPosted = $this->fnGetInput("formposted","N",array("Y","N"),"P")=="Y";
 	}
 
 /*
@@ -80,7 +84,7 @@ class clsTweetings{
 */
 
 	private function fnCheckBearerToken(){
-		if($this->boolAuthSet){
+		if($this->boolAuthSet && $this->boolPosted){
 			$boolCreateNewBearerToken = false;
 			$this->strBearerToken = $this->fnGetInput("strBearerToken","","S","S");
 			$strBearerTokenUser = $this->fnGetInput("strBearerTokenUser","","S","S");
@@ -233,8 +237,12 @@ class clsTweetings{
 				foreach($this->arrErrs as $strErr){
 					echo '<p class="err">'.$strErr.'</p>';
 				}
-				foreach($this->arrFinalResults as $int=>$arrTweet){
-					echo '<p class="tweetp">'. ($int+1) . ": ".$arrTweet["created_at"].'<br />'.$arrTweet["text"].'</p>';
+				if($this->boolPosted){
+					foreach($this->arrFinalResults as $int=>$arrTweet){
+						echo '<p class="tweetp">'. ($int+1) . ": ".$arrTweet["created_at"].'<br />'.$arrTweet["text"].'</p>';
+					}
+				}else{
+					echo '<p>Nothing to see here. Please disperse (or press "Investigate").</p>';
 				}
 			break;
 			default;

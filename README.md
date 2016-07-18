@@ -9,7 +9,7 @@ Experimenting with the twitter REST API (https://dev.twitter.com/rest/public) us
 - PHP: A php class (clsTweetings.php) using twitter API application-only authorisation
 - HTML: Small web interface to add settings and query twitter. Simple "template" system
 
-A working version of the app can be <a href="https://webeism-tweetings.herokuapp.com/index.php">see here</a>
+A working version of the app deployed on Heroku can be <a target="_blank" href="https://webeism-tweetings.herokuapp.com/index.php">see here</a>
 
 TODO: Add methods / options to interface, do something with the tweets, get a life :)
 

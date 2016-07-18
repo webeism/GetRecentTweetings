@@ -28,6 +28,7 @@ html(lang="en")
 			section.interface
 				h2 Use the interface below to query the twitter
 				form(method="post",action="{strFormAction}")
+					input(type="hidden", value="Y", name="formposted")
 					fieldset
 						legend Credentials
 						| {strCredentialsHTML}
